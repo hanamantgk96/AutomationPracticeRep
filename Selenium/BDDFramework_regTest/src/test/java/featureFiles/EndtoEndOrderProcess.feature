@@ -23,7 +23,8 @@ Feature: Order Process
     And LPO is successfully created 
     
     Scenario: Lpo fulfillment
-    Given 
+    Given enter user name
+    When user click buttons
     
     Scenario: Stok in Process 
     Scenario: Order Compilation
