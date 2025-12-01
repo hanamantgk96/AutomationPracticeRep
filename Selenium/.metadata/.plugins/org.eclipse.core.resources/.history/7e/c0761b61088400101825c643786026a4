@@ -1,0 +1,49 @@
+package PageObject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+public class UOM_Conversion {
+	
+	public WebDriver driver;
+	
+	public UOM_Conversion(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	By clickgrid = By.xpath("//div[@class='menu-cont' ] //img[@alt='img']");
+	By clickdelivery = By.xpath("//ul//li//span[text()='Order Processing']");
+	By plackschedule = By.xpath("//ul//li//span[text()='Processing Orders']");
+	By createdeliveryschedule = By.xpath("//*[text()='Create New']");
+	
+	public void clickgrid() {
+		driver.findElement(clickgrid).click();
+	}
+
+	public void clickdeliveryoption() {
+		driver.findElement(clickdelivery).click();
+	}
+
+	public void clickschedule() {
+		driver.findElement(plackschedule).click();
+	}
+	
+	public void clickcreateschedule() {
+		driver.findElement(createdeliveryschedule).click();
+	}
+	
+	public void UOMConversion1() throws InterruptedException {
+		
+		WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div/select"));
+		Select select = new Select(dropdown);
+		select.selectByVisibleText("UOM Conversion");
+	
+		Thread.sleep(2000);
+	WebElement dropdown1 = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div/div/select"));
+	Select select1 = new Select(dropdown1);
+	select1.selectByVisibleText("Warehouse4A,Belhasa Compound,Al Quoz Industrial Area 3,Dubai,UAE");
+	}
+
+}

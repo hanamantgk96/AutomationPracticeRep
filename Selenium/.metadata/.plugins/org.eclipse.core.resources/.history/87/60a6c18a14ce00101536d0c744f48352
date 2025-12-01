@@ -1,0 +1,17 @@
+
+@tag
+Feature: OrderProcess
+
+  @tag1
+  Scenario: Place an order
+    Given Navigate to the place order page
+    And Select business in the list
+    And Select products
+    And Enter product quantity
+    Then Select payment method
+    Then Select shipping date
+    And Selct billing address and shipping address
+		Then Enters LPO Number 
+		And Select Outlet and Delivery User is optional
+		And Order is ctrate successful
+  

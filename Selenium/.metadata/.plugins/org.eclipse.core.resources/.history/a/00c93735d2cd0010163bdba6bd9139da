@@ -1,0 +1,28 @@
+
+Feature: Login UAEADMIN
+
+@sanity
+  Scenario: Successful Login with Valid Credentials
+    Given User Launch the Chrome browser
+    When User opens URL
+    And User enters valid username and password
+    And Click on login button
+    Then Page Title should be "FRESHONTABLE"
+    And Close the browser
+    
+    Scenario Outline: Login with Invalid Credentials
+    Given User Launch the Chrome browser
+    When User opens URL
+    And User enters valid username and password
+    And Click on login button
+    Then Page Title should be "FRESHONTABLE"
+    When User clcik on the Log out link
+    Then Page title should be "Your home / Login page"
+    And Close the browser
+    
+    Examples: 
+    			| username | password |
+    			| UAEADMIN | Admin@4321 |
+    			| UAEADMIN | Admin@1234 |
+    			
+

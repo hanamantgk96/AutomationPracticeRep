@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;pageObject.Login&apos; to &apos;LoginPage&apos;&#x0D;&#x0A;- Original project: &apos;Freshontable_fotV001&apos;&#x0D;&#x0A;- Original element: &apos;pageObject.Login&apos;&#x0D;&#x0A;- Renamed element: &apos;pageObject.LoginPage&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Login&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;pageObject{Login.java[Login" matchStrategy="1" name="LoginPage" qualified="false" references="true" similarDeclarations="false" stamp="1758283777461" textual="false" version="1.0"/>
+</session>

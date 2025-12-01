@@ -1,0 +1,42 @@
+package PageObject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+public class LoginSnoc {
+	
+	public WebDriver driver;
+
+	public LoginSnoc(WebDriver driver) {
+		this.driver = driver;	
+	}
+		
+	By phNum = By.xpath("//input[@type='text']");  //*[@id=\"username\"]
+	By passWord = By.xpath("//input[@type='password']");
+	By login = By.xpath("//button[text()='Login']");
+//	By popup = By.xpath("//button[@class='button button-primary button-small']");
+	By LoginVali = By.xpath("//*[@id=\"root\"]/div/div[1]/div[2]/span");
+	
+	public void enterusername() {
+	driver.findElement(phNum).sendKeys("SNOCADMIN");
+	}
+	
+	public void enterpassword() {
+		driver.findElement(passWord).sendKeys("Snoc@1234");
+	}
+
+	public void clickOnLoginButton() {
+		driver.findElement(login).click();
+    }
+	
+	public void SnocAdminValidation() {
+		WebElement element = driver.findElement(LoginVali);
+		String expectedValue = "FRESHONTABLE";
+        String actualValue = element.getText();	        
+        Assert.assertEquals(actualValue, expectedValue, "The values don't match!");
+        System.out.println("User is able to Login sucessfully");
+	}
+
+}

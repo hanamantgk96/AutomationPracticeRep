@@ -1,0 +1,357 @@
+package PageObject;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class PlaceOrder {
+
+	double prdGrsAMt = 0.0d;
+	public WebDriver driver;
+	public WebDriverWait wait;
+	
+	public PlaceOrder(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	
+	By clickgrid = By.xpath("//div[@class='menu-cont' ] //img[@alt='img']");
+	By clickorder = By.xpath("//ul//li//span[text()='Order']");
+	By placeorder = By.xpath("//ul//li//span[text()='Place Order']");
+	By clickbusiness = By.xpath("//div[@style=\"position: absolute; top: 10px; right: 12px;\"]");
+	By selectbusiness = By.xpath("//*[@id=\"grid_732322063_0_content_table\"]/tbody/tr");
+	By Reviewbutton = By.xpath("//button[text()='Review Order']");
+
+	public void clickgrid() {
+		driver.findElement(clickgrid).click();
+	}
+
+	public void clickorderoption() {
+		driver.findElement(clickorder).click();
+	}
+
+	public void clickplaceorder() {
+		driver.findElement(placeorder).click();
+	}
+
+	public void clickbusinessfield() {
+		driver.findElement(clickbusiness).click();
+	}
+
+	public void selectbusinessrandomaly() {
+		List<WebElement> rows = driver.findElements(selectbusiness);
+		Random random = new Random();
+		int randomIndex = random.nextInt(rows.size());
+		rows.get(randomIndex).click();
+	}
+
+	public double selectProduct() {
+
+		Random random1 = new Random();
+		int minSelections = 1;
+		int maxSelections = 5;
+		int productsPerPage = 2;
+
+		int numberOfSelections = random1.nextInt((maxSelections - minSelections) + 1) + minSelections;
+		System.out.println("No of products to be selected: " + numberOfSelections);
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		Set<Integer> selectedIndices = new HashSet<>();
+
+		while (selectedIndices.size() < numberOfSelections) {
+			List<WebElement> products = driver.findElements(By.xpath(
+					"/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div/table/tbody/tr/td/div/input"));
+
+			// List<WebElement> checkboxes =
+			// driver.findElements(By.xpath("//table/tbody/tr/td/div/input"));
+
+			if (products.size() >= numberOfSelections) {
+				int randomIndex1 = random1.nextInt(products.size());
+				selectedIndices.add(randomIndex1);
+			}
+		}
+
+		for (int index : selectedIndices) {
+
+			List<WebElement> products = driver.findElements(By.xpath(
+					"/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div/table/tbody/tr/td/div/input"));
+
+			WebElement product = wait.until(ExpectedConditions.elementToBeClickable(products.get(index)));
+
+			
+			WebElement parentRow = product.findElement(By.xpath("./ancestor::tr"));
+
+			
+			String productGrossAmt = parentRow.findElement(By.xpath("./td[13]")).getText();
+
+			double prdVal = Double.parseDouble(productGrossAmt);
+
+			prdGrsAMt += prdVal;  // Correct accumulation of the gross amount
+
+
+//			System.out.println("no of products" + productGrossAmt);
+			if (!product.isSelected()) {
+				product.click();
+			}
+		}
+
+		int numberOfSelections1 = random1.nextInt((maxSelections - minSelections) + 1) + minSelections;
+		List<WebElement> products = driver.findElements(By.xpath(
+				"/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div/table/tbody/tr/td/div/input"));
+
+		if (numberOfSelections1 > products.size()) {
+			numberOfSelections1 = products.size();
+		}
+		return prdGrsAMt;
+	}
+
+	public void Ship_Date_ErrorMessageValidation() throws InterruptedException {
+
+		WebElement reviewOrderButton = driver.findElement(Reviewbutton);
+		reviewOrderButton.click();
+		Thread.sleep(1000);
+		try {
+			WebElement okButton = driver.findElement(By.xpath("//button[text()='OK']"));
+			okButton.click();
+			System.out.println("Erro massage: Popup handled successfully");
+		} catch (Exception e) {
+			System.out.println("No popup appeared.");
+		}
+
+		Thread.sleep(1000);
+
+//		driver.findElement(By.name("ship_dt")).click();
+		Thread.sleep(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		System.out.println("Test case failed: shipping address is mandatory");
+		driver.findElement(By.name("ship_dt")).click();
+		
+
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("react-datepicker")));
+
+		LocalDate nextDay = LocalDate.now().plusDays(1);
+		DateTimeFormatter monthYearFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("d");
+
+		String targetDay = nextDay.format(dayFormatter);
+		String targetMonthYear = nextDay.format(monthYearFormatter);
+
+		while (!driver.findElement(By.xpath("//div[@class='react-datepicker__current-month']")).getText()
+				.contains(targetMonthYear)) {
+			driver.findElement(By.xpath("//button[contains(@class, 'react-datepicker__navigation--next')]")).click();
+		}
+
+		List<WebElement> days = driver.findElements(By.cssSelector(
+				"div.react-datepicker__month-container div.react-datepicker__month div.react-datepicker__week div.react-datepicker__day"));
+
+		for (WebElement day : days) {
+			String ariaLabel = day.getAttribute("aria-label");
+			if (ariaLabel != null && ariaLabel.contains(targetDay)
+					&& ariaLabel.contains(nextDay.format(DateTimeFormatter.ofPattern("MMMM")))) { // check for Day and
+																									// Month
+				day.click();
+				System.out.println("✅ Test Case Passed: shipping adress is selected successfully");
+				break;
+			}
+		}
+	}
+
+	public void Lpo_Num_popupErrorValidation() throws InterruptedException {
+		Thread.sleep(1000);
+		WebElement reviewOrderButton = driver.findElement(Reviewbutton);
+		reviewOrderButton.click();
+		Thread.sleep(1000);
+
+		WebElement okButton = driver.findElement(By.xpath("//button[text()='OK']"));
+		okButton.click();
+
+		Thread.sleep(1000);
+
+		try {
+			WebElement LPONumberField = driver.findElement(By.name("lpo_number"));
+
+			if (LPONumberField.getAttribute("value").isEmpty()) {
+				System.out.println("Test Case Failed: LPO Number is mandatory.");
+				Thread.sleep(1000);
+
+				LPONumberField.sendKeys("26-feb-2025");
+				Thread.sleep(1000);
+
+				if (!LPONumberField.getAttribute("value").isEmpty()) {
+					System.out.println("✅ Test Case Passed: LPO Number is entered successfully - "
+							+ LPONumberField.getAttribute("value"));
+				} else {
+					System.out.println("Test Case Failed: LPO Number is still empty.");
+				}
+			} else {
+				System.out.println(
+						"Test Case Passed: LPO Number is already filled - " + LPONumberField.getAttribute("value"));
+			}
+		} catch (Exception e) {
+			System.out.println("LPO Number field not found or an error occurred: " + e.getMessage());
+		}
+	}
+
+	public void selectPaymentModeByIndex(int index) throws InterruptedException {
+		Thread.sleep(2000);
+		WebElement reviewOrderButton = driver.findElement(Reviewbutton);
+		reviewOrderButton.click();
+		Thread.sleep(1000);
+
+		WebElement okButton = driver.findElement(By.xpath("//button[text()='OK']"));
+		okButton.click();
+
+		Thread.sleep(1000);
+
+		WebElement paymentDropdownField = driver.findElement(By.name("payment_method"));
+
+		WebElement dropdownElement = driver.findElement(By.name("payment_method"));
+		Select dropdown = new Select(dropdownElement);
+
+		List<WebElement> options = dropdown.getOptions();
+
+		List<String> excludedOptions = Arrays.asList("Payment Method", "Select");
+
+		List<WebElement> validOptions = new ArrayList<>();
+		for (WebElement option : options) {
+			String optionText = option.getText().trim();
+			if (!excludedOptions.contains(optionText) && !optionText.isEmpty()) {
+				validOptions.add(option);
+			}
+		}
+
+		if (!validOptions.isEmpty()) {
+			System.out.println("Test case failed: payment terms is mandatory");
+			dropdown.selectByVisibleText(validOptions.get(0).getText()); // Select first valid option
+			Thread.sleep(1000);
+
+			String selectedOption = dropdown.getFirstSelectedOption().getText();
+			System.out.println("✅ Test Case Passed: Selected Payment Method is - " + selectedOption);
+		} else {
+			System.out.println("No valid payment methods available to select.");
+		}
+	}
+
+	public void Sel_billingAddr_And_ShiAddr_popupErrorValidation() throws InterruptedException {
+		Thread.sleep(2000);
+		WebElement reviewOrderButton = driver.findElement(Reviewbutton);
+		reviewOrderButton.click();
+		Thread.sleep(2000);
+
+		WebElement okButton = driver.findElement(By.xpath("//button[text()='OK']"));
+		okButton.click();
+		System.out.println("Test case failed: billing address is mandatory .");
+
+		Thread.sleep(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		try {
+			WebElement billingAddressRadio = driver.findElement(By.name("billing_address"));
+
+			if (!billingAddressRadio.isSelected()) {
+				billingAddressRadio.click();
+				System.out.println("✅ Test Case Passed: billing address and shipping adress is selected");
+				System.out.println("Billing address selected successfully.");
+			} else {
+				System.out.println("Billing address was already selected.");
+			}
+		} catch (Exception e) {
+			System.out.println("Billing address selection error: " + e.getMessage());
+		}
+
+		try {
+			WebElement shippingAddressRadio = driver.findElement(By.name("shipping_address"));
+
+			if (!shippingAddressRadio.isSelected()) {
+				shippingAddressRadio.click();
+				System.out.println("Shipping address selected successfully.");
+			} else {
+				System.out.println("Shipping address was already selected.");
+			}
+		} catch (Exception e) {
+			System.out.println("Shipping address selection error: " + e.getMessage());
+		}
+	}
+
+	public void selectByDriver() throws InterruptedException {
+
+		WebElement dropdownElement = driver.findElement(By.name("del_user_id"));
+		Select dropdown = new Select(dropdownElement);
+
+		List<WebElement> options = dropdown.getOptions();
+		// List of options to exclude
+		List<String> excludedOptions = new ArrayList<>();
+		excludedOptions.add("Payment Method");
+		excludedOptions.add("Select");
+
+		List<WebElement> validOptions = new ArrayList<>();
+		for (WebElement option : options) {
+			String optionText = option.getText();
+			if (!excludedOptions.contains(optionText)) {
+				validOptions.add(option);
+			}
+		}
+
+		for (WebElement option : options) {
+		}
+		Thread.sleep(1000);
+
+		dropdown.selectByIndex(2);
+	}
+//	public void driverclose() {
+//		driver.close();
+//	}
+
+	public void validateTotalAmount(double prdValu) throws InterruptedException {
+		Thread.sleep(1000);
+
+		
+		WebElement reviewOrderButton = driver.findElement(Reviewbutton);
+		reviewOrderButton.click();
+		Thread.sleep(1000);
+
+		// Fetch all selected products
+		List<WebElement> products = driver
+				.findElements(By.xpath("/html/body/div[4]/div[3]/div[2]/div[2]/table/thead/tr[6]/td[2]")); 
+		WebElement product = products.get(0);
+
+		// Retrieve the value (text) of the product
+		String productValue = product.getText();
+		double val = Double.parseDouble(productValue)+1;
+		if (val == prdValu) {
+			System.out.println("Total amount is - " +val);
+			System.out.println("Gross amount is - " +prdValu);
+			System.out.println("✅ Test Case Passed: Total amount and Gross amount are matched");
+		}else {
+			System.out.println("Total amount is - " +val);
+			System.out.println("Gross amount is - " +prdValu);
+			System.out.println("✅ Test Case failed: Total amount and Gross amount are Not matched");
+		}
+		
+	}
+	public void clicplaceorderbutton() {
+		driver.findElement(By.xpath("//button[text()='Place Order']")).click();
+		driver.findElement(By.xpath("//button[text()='No']")).click();
+		   
+		   System.out.println("✅ Test Case Passed: Order created successfully");
+		   
+			 
+		}
+
+}

@@ -1,0 +1,14 @@
+package runnerClass;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/java/featureFiles",
+		glue = { "stepDefinitions" }, 
+		plugin = { "pretty","html:target/cucumber-reports.html" }, 
+		dryRun=true,
+		monochrome = true)
+
+public class TestRunner {
+	
+	
+
+}

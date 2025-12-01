@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="E:\Selenium\FreshonTable_V001\src\test\java\CucumberTestNg\TestNgRunner.java"/>
+			<item value="D:\Selenium_Automation"/>
+			<item value="E:\Selenium\LPO"/>
+			<item value="E:\Selenium"/>
+			<item value="E:\Selenium\CucumberBDD"/>
+			<item value="E:\Selenium\Annotations"/>
+			<item value="E:\Selenium\sampleproject"/>
+			<item value="E:\Selenium\sampleproject\src\com\sample\helloworld.java"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+			<item value="BDDFramework_regTesting"/>
+		</list>
+		<list key="groupId">
+			<item value="1234"/>
+		</list>
+		<list key="artifactId">
+			<item value="BDDFramework_regTesting"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="D:\API_Testing_Class\Scratch_APISK08"/>
+			<item value="D:\APITesting_Class\Scratch_APISK08"/>
+			<item value="E:\Selenium\FreshonTable_V001"/>
+			<item value="D:\APITesting_Class\Scratch_APISK08 (2)"/>
+			<item value="D:\APITesting_Class\Scratch_APISK08 (2)\Scratch_APISK08"/>
+			<item value="E:\Selenium\Scratch_APISK08"/>
+			<item value="E:\Selenium\FrameworkScratchBatch2"/>
+			<item value="E:\Documents\APISK08Practice"/>
+			<item value="E:\Selenium\APISK08Practice\APISK08Practice"/>
+			<item value="E:\Selenium\APISK08Practice"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

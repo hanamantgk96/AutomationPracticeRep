@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner (1)" project="BDDFramework_regTest" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="runnerClass.TestRunner" time="35.823">
+    <testsuite name="Login" time="35.823">
+      <testcase name="Successful Login with Valid Credentials" classname="Login" time="8.74"/>
+      <testcase name="Login with Invalid Credentials #1" classname="Login" time="14.107"/>
+      <testcase name="Login with Invalid Credentials #2" classname="Login" time="12.976"/>
+    </testsuite>
+  </testsuite>
+</testrun>

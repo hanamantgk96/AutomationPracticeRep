@@ -1,0 +1,31 @@
+package pageObject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+	
+	public WebDriver driver;
+
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+
+}
+	
+	By phNum = By.xpath("//input[@type='text']");
+	By passWord = By.xpath("//input[@type='password']");
+	By login = By.xpath("//button[text()='Login']");
+	By LoginVali = By.xpath("//*[@id=\"root\"]/div/div[1]/div[2]/span");
+	
+	public void enterusername() {
+	driver.findElement(phNum).sendKeys("UAEADMIN");
+	}
+	
+	public void enterpassword() {
+		driver.findElement(passWord).sendKeys("Admin@4321");
+	}
+
+	public void clickOnLoginButton() {
+		driver.findElement(login).click();
+    }
+}

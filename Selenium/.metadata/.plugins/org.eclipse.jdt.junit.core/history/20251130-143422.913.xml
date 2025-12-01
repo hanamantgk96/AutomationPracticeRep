@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner (1)" project="BDDFramework_regTest" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="runnerClass.TestRunner" time="0.0">
+    <testcase name="initializationError" classname="runnerClass.TestRunner" time="0.0">
+      <error>java.lang.IllegalArgumentException: Couldn't create a file output stream for 'test-output'.
+Make sure the the file isn't a directory.
+
+Note: This usually happens when plugins write to colliding paths.
+For example: 'json:target/cucumber/report.json, html:target/cucumber'
+You can fix this by making the paths do no collide.
+For example: 'json:target/cucumber/report.json, html:target/cucumber/report.html'
+The details are in the stack trace below:&#13;
+	at io.cucumber.core.plugin.PluginFactory.createFileOutputStream(PluginFactory.java:240)&#13;
+	at io.cucumber.core.plugin.PluginFactory.openStream(PluginFactory.java:199)&#13;
+	at io.cucumber.core.plugin.PluginFactory.convert(PluginFactory.java:166)&#13;
+	at io.cucumber.core.plugin.PluginFactory.instantiate(PluginFactory.java:99)&#13;
+	at io.cucumber.core.plugin.PluginFactory.create(PluginFactory.java:63)&#13;
+	at io.cucumber.core.plugin.Plugins.createPlugins(Plugins.java:32)&#13;
+	at io.cucumber.core.plugin.Plugins.&lt;init&gt;(Plugins.java:25)&#13;
+	at io.cucumber.junit.Cucumber.&lt;init&gt;(Cucumber.java:163)&#13;
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#13;
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)&#13;
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)&#13;
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)&#13;
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)&#13;
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)&#13;
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)&#13;
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:70)&#13;
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:37)&#13;
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:70)&#13;
+	at org.junit.internal.requests.ClassRequest.createRunner(ClassRequest.java:28)&#13;
+	at org.junit.internal.requests.MemoizingRequest.getRunner(MemoizingRequest.java:19)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.createUnfilteredTest(JUnit4TestLoader.java:90)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.createTest(JUnit4TestLoader.java:76)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.loadTests(JUnit4TestLoader.java:49)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:514)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:758)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:453)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211)&#13;
+Caused by: java.io.FileNotFoundException: E:\Selenium\BDDFramework_regTest\test-output (Access is denied)&#13;
+	at java.base/java.io.FileOutputStream.open0(Native Method)&#13;
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)&#13;
+	at java.base/java.io.FileOutputStream.&lt;init&gt;(FileOutputStream.java:235)&#13;
+	at java.base/java.io.FileOutputStream.&lt;init&gt;(FileOutputStream.java:184)&#13;
+	at io.cucumber.core.plugin.PluginFactory.createFileOutputStream(PluginFactory.java:237)&#13;
+	... 26 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

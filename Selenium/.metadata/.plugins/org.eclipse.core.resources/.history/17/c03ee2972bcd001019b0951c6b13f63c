@@ -1,0 +1,23 @@
+package utilities;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import pageObject.objectManager;
+
+
+
+public class BaseClass {
+	
+	public WebDriver driver;
+	public SetupClass baseclass;
+	public objectManager pageObjectManager;
+
+	public BaseClass() throws IOException {
+		baseclass = new SetupClass();
+		pageObjectManager = new objectManager(baseclass.webDriverManager());
+
+	}
+
+}

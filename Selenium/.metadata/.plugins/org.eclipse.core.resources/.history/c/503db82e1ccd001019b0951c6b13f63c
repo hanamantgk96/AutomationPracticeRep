@@ -1,0 +1,14 @@
+package stepDefinitions;
+
+import org.openqa.selenium.WebDriver;
+
+public class Steps {
+	
+	public WebDriver driver;
+
+	public Steps(WebDriver driver) {
+		this.driver = driver;
+
+}
+
+}

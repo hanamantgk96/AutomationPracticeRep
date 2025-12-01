@@ -1,0 +1,83 @@
+package StepDefinitions;
+	
+	import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+	import org.openqa.selenium.By;
+	import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.chrome.ChromeDriver;
+	import org.testng.Assert;
+
+	import io.cucumber.java.en.And;
+	import io.cucumber.java.en.Given;
+	import io.cucumber.java.en.Then;
+	import io.cucumber.java.en.When;
+
+	public class LoginStepDefinition {
+		
+		static WebDriver driver;
+		@Given("User is on Login Page")
+		public void user_is_on_login_page() {
+			driver = new ChromeDriver();
+			driver.get("https://mktadmin.freshontable.com/");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		}
+
+		@When("User is enters the valid username and password")
+		public void user_is_enters_the_valid_username_and_password() {
+			driver.findElement(By.xpath("//input[@type='text']")).sendKeys("UAEADMIN");
+		    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Admin@1234");
+		}
+
+		@And("Click on the login button")
+		public void click_on_the_login_button() {
+			driver.findElement(By.xpath("//button[text()='Login']")).click();
+		}
+
+		@Then("Users is navigated to home page")
+		public void users_is_navigated_to_home_page() {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	        driver.findElement(By.xpath("/html/body/div[2]/div[3]/div[2]/button")).click();
+		}
+
+		@And("Close the brouser")
+		public void close_the_brouser() throws InterruptedException {
+			
+			 WebElement element = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div[2]/span"));
+
+		        String expectedValue = "FRESHONTABLE";
+		        String actualValue = element.getText();	        
+		        Assert.assertEquals(actualValue, expectedValue, "The values don't match!");
+		        System.out.println("User Login sucessfully : " + actualValue);
+//		        driver.quit();
+
+//Navigate Lpo page		        
+		        Thread.sleep(2000);
+		        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div[1]/img")).click();
+		        Thread.sleep(2000);
+		        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/ul[5]/li/span/span[1]")).click();
+		        Thread.sleep(2000);
+		        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/ul[5]/ul/li[3]/span/span")).click();
+		        
+		        Thread.sleep(5000);
+		        List<WebElement> checkboxes = driver.findElements(By.xpath("//*[@id=\"grid_1404344552_0_content_table\"]/tbody/tr/td/div/span[1]"));
+		        System.out.println(checkboxes.size());
+
+		        for (int i = 0; i < 3 && i < checkboxes.size(); i++) {
+		            WebElement checkbox = checkboxes.get(i); 
+		            if (!checkbox.isSelected()) {
+		                checkbox.click();
+		            }
+		            
+		        }
+		        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[5]/button[2]")).click();
+		    }
+		}
+
+
+
+
+

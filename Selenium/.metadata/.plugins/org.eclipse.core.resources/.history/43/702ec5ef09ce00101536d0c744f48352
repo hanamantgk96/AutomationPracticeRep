@@ -1,0 +1,24 @@
+
+@tag
+Feature: OrderProcess
+
+  @tag1
+  Scenario: Place an order
+    Given Navigate place order page
+    And Select business
+    And Select products
+    And enter product qty
+    And Select payment method
+    Then Select shipping address
+    And 
+
+  @tag2
+  Scenario Outline: Title of your scenario outline
+    Given I want to write a step with <name>
+    When I check for the <value> in step
+    Then I verify the <status> in step
+
+    Examples: 
+      | name  | value | status  |
+      | name1 |     5 | success |
+      | name2 |     7 | Fail    |

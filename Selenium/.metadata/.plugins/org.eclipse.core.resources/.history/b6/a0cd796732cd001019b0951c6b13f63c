@@ -1,0 +1,55 @@
+package stepDefinitions;
+
+import org.openqa.selenium.WebDriver;
+
+import pageObject.LoginPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import utilities.SetupClass;
+
+public class Steps {
+	
+	public SetupClass setupclass;
+//	public WebDriver driver;
+
+	public Steps(SetupClass setupclass) {
+		this.setupclass = setupclass;
+
+}
+	
+	@Given("User Launch the Chrome browser")
+	public void user_launch_the_chrome_browser() {
+	    
+	}
+
+	@When("User opens URL {string}")
+	public void user_opens_url(String string) {
+//		LoginSnoc s1 = testsetup.pageObjectManager.getLoginPage();
+		Steps s1 = baseclass.getLoginPage1();
+//		s1.enterusername();
+//		s1.enterpassword();
+	}
+
+	@When("User enters valid username and password")
+	public void user_enters_valid_username_and_password() {
+	    
+	}
+
+	@When("Click on login button")
+	public void click_on_login_button() {
+	    
+	}
+
+	@Then("Page Title should be {string}")
+	public void page_title_should_be(String string) {
+	    
+	}
+
+	@Then("Close the browser")
+	public void close_the_browser() {
+
+
+	}
+
+}
