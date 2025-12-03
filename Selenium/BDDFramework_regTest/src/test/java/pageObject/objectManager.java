@@ -7,6 +7,8 @@ public class objectManager {
 	public WebDriver driver;
 	
 	public LoginPage loginPage;
+	public LpoPage Lpopage;
+	public Placeorder placeorder;
 	
 	public objectManager(WebDriver driver) {
 		this.driver = driver;
@@ -16,5 +18,14 @@ public class objectManager {
 		loginPage = new LoginPage(driver);
 		return loginPage;
 	}
-
+	
+	public LpoPage getLpopage() {
+		Lpopage = new LpoPage(driver);
+		return Lpopage;
+	}
+	
+	public Placeorder getplaceorder() {
+		placeorder = new Placeorder(driver);
+		return placeorder;
+}
 }

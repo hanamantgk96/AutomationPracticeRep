@@ -18,10 +18,9 @@ Scenario Outline: Login with Invalid Credentials
     Then Page Title should be "FRESHONTABLE"
     When User clcik on the Log out link
     Then Page title should be the "Your login page"
-#		When User enters wrong credentials than Error message should be displayed
     And Close the browser
 
     Examples: 
         | username | password   |
-        | UAEADMIN | Admin@4321 |
         | UAEADMIN | Admin@1234 |
+        | UAEADMIN | Admin@12345 |

@@ -1,7 +1,14 @@
-@tag
+
 Feature: Order Process
 
-  @EndtoEndProcess
+Background:
+    Given User Launch the Chrome browser
+    When User opens URL "https://mktadmin.freshontable.com/"
+    And User enters username "UAEADMIN" and password "Admin@4321"
+    And Click on login button
+    Then Page Title should be "FRESHONTABLE"
+    And Close the browser
+
   Scenario: Place an order
     Given User navigates to the Place Order page
     And User selects a business from the list
@@ -13,8 +20,9 @@ Feature: Order Process
     Then User enters the LPO number
     And User selects the Outlet (optional) and Delivery User (optional)
     Then The order is created successfully
-    
-    Scenario: Lpo creating
+  
+  @Regression  
+  Scenario: Lpo creating
     Given User Navigate to the create LPO page
     And Select products which is approved
     And Got to second page
@@ -22,15 +30,10 @@ Feature: Order Process
     Then Click submit button and click confirm
     And LPO is successfully created 
     
-    Scenario: Lpo fulfillment
-    Given enter user name
-    When user click buttons
-    And enter second name
-    And enter country code
+  #  Scenario: Lpo fulfillment   
+  #  Scenario: Stok in Process 
+  #  Scenario: Order Compilation
+  #  Scenario: Delivery Schedule
+  #  Scenario: Order Invoicing
     
-    Scenario: Stok in Process 
-    Scenario: Order Compilation
-    Scenario: Delivery Schedule
-    Scenario: Order Invoicing
-    Scenario: generate invoice
     

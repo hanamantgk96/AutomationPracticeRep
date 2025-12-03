@@ -68,7 +68,7 @@ public class Steps {
 	@Then("Close the browser")
 	public void close_the_browser() {
 		LoginPage login = setupclass.pageObjectManager.getLoginPage1();
-		login.quiteBrowser();
+//		login.quiteBrowser();
 	}
 
 }
