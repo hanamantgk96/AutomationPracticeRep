@@ -73,7 +73,7 @@ public BaseClass setupclass;
 	public void the_order_is_created_successfully() {
 		Placeorder Order = setupclass.pageObjectManager.getplaceorder();
 		Order.placeOrder();
-		Order.captureOrderId();
+		 Placeorder.orderId = Order.captureOrderId(); 
 		
 	}
 

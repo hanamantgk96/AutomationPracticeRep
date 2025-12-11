@@ -3,13 +3,14 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 
 public class objectManager {
-	
+
 	public WebDriver driver;
-	
+
 	public LoginPage loginPage;
 	public Lpopage Lpopage;
 	public Placeorder placeorder;
-	
+	public OrderCompilation orderCompilation;
+
 	public objectManager(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -18,14 +19,23 @@ public class objectManager {
 		loginPage = new LoginPage(driver);
 		return loginPage;
 	}
-	
+
 	public Lpopage getLpopage() {
 		Lpopage = new Lpopage(driver);
 		return Lpopage;
 	}
-	
+
 	public Placeorder getplaceorder() {
 		placeorder = new Placeorder(driver);
 		return placeorder;
-}
+
+	}
+	
+	public OrderCompilation getOrderCompilation() {
+		orderCompilation = new OrderCompilation(driver);
+				return orderCompilation;
+		
+	}
+	
+	
 }

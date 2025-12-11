@@ -26,6 +26,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Placeorder {
 	
 	public WebDriver driver;
+	
+	public static String orderId; 
 
 	public Placeorder(WebDriver driver) {
 		this.driver = driver;
@@ -286,7 +288,7 @@ public class Placeorder {
 		 
 	}
 	
-	public void captureOrderId() {
+	public String captureOrderId() {
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".react-confirm-alert-body")));
@@ -306,6 +308,7 @@ public class Placeorder {
 		System.out.println("Created Order ID: " + orderId);
 		
 		driver.findElement(By.xpath("//button[text()='No']")).click();
+		return orderId;
 
 	}
 }

@@ -80,7 +80,9 @@ WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(
        By.xpath("//*[@id=\"filter-popover-ord_id\"]/div[3]/div/div[1]/input")));
 Thread.sleep(1000);
-     searchBox.sendKeys("283272");
+		String orderId = Placeorder.orderId;
+		System.out.println("Order ID = " + orderId);
+     searchBox.sendKeys(orderId);
      searchBox.sendKeys(Keys.ENTER);
 
 	    wait.until(ExpectedConditions.invisibilityOfElementLocated(
